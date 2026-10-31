@@ -1,0 +1,32 @@
+$ ansible-playbook playbooks/nginx.yml
+
+PLAY [Configure nginx on the worker nodes] *************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [lab4-worker2]
+ok: [lab4-worker]
+
+TASK [nginx : Ensure nginx is installed] ***************************************
+ok: [lab4-worker2]
+ok: [lab4-worker]
+
+TASK [nginx : Ensure document root exists] *************************************
+ok: [lab4-worker2]
+ok: [lab4-worker]
+
+TASK [nginx : Deploy the index page from a template] ***************************
+changed: [lab4-worker]
+changed: [lab4-worker2]
+
+TASK [nginx : Ensure nginx is running and enabled] *****************************
+ok: [lab4-worker]
+ok: [lab4-worker2]
+
+RUNNING HANDLER [nginx : Restart nginx] ****************************************
+changed: [lab4-worker2]
+changed: [lab4-worker]
+
+PLAY RECAP *********************************************************************
+lab4-worker                : ok=6    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+lab4-worker2               : ok=6    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

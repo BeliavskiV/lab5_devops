@@ -1,0 +1,16 @@
+---
+- name: Show memory and CPU of every host
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Total memory (MB)
+      ansible.builtin.debug:
+        var: ansible_facts['memtotal_mb']
+
+    - name: Number of virtual CPUs
+      ansible.builtin.debug:
+        var: ansible_facts['processor_vcpus']
+
+    - name: First CPU model
+      ansible.builtin.debug:
+        var: ansible_facts['processor'][2]

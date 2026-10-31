@@ -1,0 +1,13 @@
+### terraform apply (default variable)
+Plan: 2 to add, 0 to change, 0 to destroy.
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+ExampleNginxContainer 0.0.0.0:8000->80/tcp
+
+### terraform apply -var='container_name=CustomNginxContainer'
+  # docker_container.nginx must be replaced
+Plan: 1 to add, 0 to change, 1 to destroy.
+Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
+CustomNginxContainer 0.0.0.0:8000->80/tcp
+
+### terraform destroy
+Destroy complete! Resources: 2 destroyed.

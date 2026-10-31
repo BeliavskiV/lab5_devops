@@ -1,0 +1,37 @@
+$ ansible workers -m apt -a "name=zsh state=present update_cache=yes"
+    "changed": true,
+    "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nThe following additional packages will be installed:\n  zsh-common\nSuggested packages:\n  zsh-doc\nThe following NEW packages will be installed:\n  zsh zsh-common\n0 upgraded, 2 newly installed, 0 to remove and 29 not upgraded.\nNeed to get 4990 kB of archives.\nAfter this operation, 21.0 MB of additional disk space will be used.\nGet:1 http://deb.debian.org/debian trixie/main arm64 zsh-common all 5.9-8 [4146 kB]\nGet:2 http://deb.debian.org/debian trixie/main arm64 zsh arm64 5.9-8+b24 [845 kB]\nFetched 4990 kB in 1s (3990 kB/s)\nSelecting previously unselected package zsh-common.\r\n(Reading database ... \r(Reading database ... 5%\r(Reading database ... 10%\r(Reading database ... 15%\r(Reading database ... 20%\r(Reading database ... 25%\r(Reading database ... 30%\r(Reading database ... 35%\r(Reading database ... 40%\r(Reading database ... 45%\r(Reading database ... 50%\r(Reading database ... 55%\r(Reading database ... 60%\r(Reading database ... 65%\r(Reading database ... 70%\r(Reading database ... 75%\r(Reading database ... 80%\r(Reading database ... 85%\r(Reading database ... 90%\r(Reading database ... 95%\r(Reading database ... 100%\r(Reading database ... 10554 files and directories currently installed.)\r\nPreparing to unpack .../zsh-common_5.9-8_all.deb ...\r\nUnpacking zsh-common (5.9-8) ...\r\nSelecting previously unselected package zsh.\r\nPreparing to unpack .../zsh_5.9-8+b24_arm64.deb ...\r\nUnpacking zsh (5.9-8+b24) ...\r\nSetting up zsh-common (5.9-8) ...\r\nSetting up zsh (5.9-8+b24) ...\r\nProcessing triggers for debianutils (5.23.2) ...\r\n",
+        "  zsh-common",
+        "  zsh-doc",
+        "  zsh zsh-common",
+        "Get:1 http://deb.debian.org/debian trixie/main arm64 zsh-common all 5.9-8 [4146 kB]",
+        "Get:2 http://deb.debian.org/debian trixie/main arm64 zsh arm64 5.9-8+b24 [845 kB]",
+        "Selecting previously unselected package zsh-common.",
+        "Preparing to unpack .../zsh-common_5.9-8_all.deb ...",
+        "Unpacking zsh-common (5.9-8) ...",
+        "Selecting previously unselected package zsh.",
+        "Preparing to unpack .../zsh_5.9-8+b24_arm64.deb ...",
+        "Unpacking zsh (5.9-8+b24) ...",
+        "Setting up zsh-common (5.9-8) ...",
+        "Setting up zsh (5.9-8+b24) ...",
+    "changed": true,
+    "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nThe following additional packages will be installed:\n  zsh-common\nSuggested packages:\n  zsh-doc\nThe following NEW packages will be installed:\n  zsh zsh-common\n0 upgraded, 2 newly installed, 0 to remove and 29 not upgraded.\nNeed to get 4990 kB of archives.\nAfter this operation, 21.0 MB of additional disk space will be used.\nGet:1 http://deb.debian.org/debian trixie/main arm64 zsh-common all 5.9-8 [4146 kB]\nGet:2 http://deb.debian.org/debian trixie/main arm64 zsh arm64 5.9-8+b24 [845 kB]\nFetched 4990 kB in 3s (1779 kB/s)\nSelecting previously unselected package zsh-common.\r\n(Reading database ... \r(Reading database ... 5%\r(Reading database ... 10%\r(Reading database ... 15%\r(Reading database ... 20%\r(Reading database ... 25%\r(Reading database ... 30%\r(Reading database ... 35%\r(Reading database ... 40%\r(Reading database ... 45%\r(Reading database ... 50%\r(Reading database ... 55%\r(Reading database ... 60%\r(Reading database ... 65%\r(Reading database ... 70%\r(Reading database ... 75%\r(Reading database ... 80%\r(Reading database ... 85%\r(Reading database ... 90%\r(Reading database ... 95%\r(Reading database ... 100%\r(Reading database ... 10554 files and directories currently installed.)\r\nPreparing to unpack .../zsh-common_5.9-8_all.deb ...\r\nUnpacking zsh-common (5.9-8) ...\r\nSelecting previously unselected package zsh.\r\nPreparing to unpack .../zsh_5.9-8+b24_arm64.deb ...\r\nUnpacking zsh (5.9-8+b24) ...\r\nSetting up zsh-common (5.9-8) ...\r\nSetting up zsh (5.9-8+b24) ...\r\nProcessing triggers for debianutils (5.23.2) ...\r\n",
+        "  zsh-common",
+        "  zsh-doc",
+        "  zsh zsh-common",
+        "Get:1 http://deb.debian.org/debian trixie/main arm64 zsh-common all 5.9-8 [4146 kB]",
+        "Get:2 http://deb.debian.org/debian trixie/main arm64 zsh arm64 5.9-8+b24 [845 kB]",
+        "Selecting previously unselected package zsh-common.",
+        "Preparing to unpack .../zsh-common_5.9-8_all.deb ...",
+        "Unpacking zsh-common (5.9-8) ...",
+        "Selecting previously unselected package zsh.",
+        "Preparing to unpack .../zsh_5.9-8+b24_arm64.deb ...",
+        "Unpacking zsh (5.9-8+b24) ...",
+        "Setting up zsh-common (5.9-8) ...",
+        "Setting up zsh (5.9-8+b24) ...",
+
+$ ansible workers -m shell -a "zsh --version"
+lab4-worker | CHANGED | rc=0 >>
+zsh 5.9 (aarch64-unknown-linux-gnu)
+lab4-worker2 | CHANGED | rc=0 >>
+zsh 5.9 (aarch64-unknown-linux-gnu)

@@ -1,0 +1,37 @@
+$ ansible k8s_cluster -m ping
+lab4-worker | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+lab4-control-plane | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+lab4-worker2 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+
+$ ansible workers -m apt -a "name=zsh state=present"
+lab4-worker2 | SUCCESS => {
+    "cache_update_time": 1792672077,
+    "cache_updated": false,
+    "changed": false
+}
+lab4-worker | SUCCESS => {
+    "cache_update_time": 1792672077,
+    "cache_updated": false,
+    "changed": false
+}
+
+$ ansible workers -m shell -a "zsh --version"
+lab4-worker | CHANGED | rc=0 >>
+zsh 5.9 (aarch64-unknown-linux-gnu)
+lab4-worker2 | CHANGED | rc=0 >>
+zsh 5.9 (aarch64-unknown-linux-gnu)
+
+$ ansible workers -m service -a "name=nginx state=restarted"
+    "changed": true,
+    "state": "started",
+    "changed": true,
+    "state": "started",

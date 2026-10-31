@@ -1,0 +1,16 @@
+all:
+  vars:
+    ansible_connection: community.docker.docker
+    ansible_python_interpreter: /usr/bin/python3
+  children:
+    control_plane:
+      hosts:
+        lab4-control-plane:
+    workers:
+      hosts:
+        lab4-worker:
+        lab4-worker2:
+    k8s_cluster:
+      children:
+        control_plane:
+        workers:

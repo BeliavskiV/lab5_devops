@@ -1,0 +1,14 @@
+$ ansible-inventory --graph
+@all:
+  |--@ungrouped:
+  |--@control_plane:
+  |  |--lab4-control-plane
+  |--@workers:
+  |  |--lab4-worker
+  |  |--lab4-worker2
+  |--@k8s_cluster:
+  |  |--@control_plane:
+  |  |  |--lab4-control-plane
+  |  |--@workers:
+  |  |  |--lab4-worker
+  |  |  |--lab4-worker2

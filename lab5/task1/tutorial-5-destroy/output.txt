@@ -1,0 +1,7 @@
+### terraform destroy
+  # docker_container.nginx will be destroyed
+  # docker_image.nginx will be destroyed
+Plan: 0 to add, 0 to change, 2 to destroy.
+docker_container.nginx: Destruction complete after 0s
+docker_image.nginx: Destruction complete after 0s
+Destroy complete! Resources: 2 destroyed.

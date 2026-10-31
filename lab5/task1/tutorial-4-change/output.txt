@@ -1,0 +1,8 @@
+### change external port 8000 -> 8001
+  # docker_container.nginx must be replaced
+          ~ external = 8000 -> 8001 # forces replacement
+Plan: 1 to add, 0 to change, 1 to destroy.
+Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
+
+### curl localhost:8001
+200

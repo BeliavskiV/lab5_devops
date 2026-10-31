@@ -1,0 +1,34 @@
+### terraform init
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+
+### terraform plan
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+─────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.
+
+### terraform apply
+docker_image.nginx: Creating...
+docker_image.nginx: Creation complete after 0s [id=sha256:146adea4768b83c607d0bdfa4188464e3da6e0a3ad4475db1d1d8f64f27c29ccnginx:1.28]
+docker_container.nginx: Creating...
+docker_container.nginx: Creation complete after 0s [id=58272821e4e22435bfab7bc9660cb909428ede1f83c9c3d88684f887f47cfe8b]
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+
+### terraform state list
+docker_container.nginx
+docker_image.nginx
+
+### docker ps
+tutorial 146adea4768b 0.0.0.0:8000->80/tcp
+
+### curl localhost:8000
+200

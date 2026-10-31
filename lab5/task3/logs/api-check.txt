@@ -1,0 +1,11 @@
+$ curl -s -o /dev/null -w "%{http_code}" http://localhost:30080/docs
+200
+
+$ curl -s -X POST http://localhost:30080/students/enroll -H "Content-Type: application/json" -d "{\"full_name\":\"Петров Пётр\",\"specialty\":\"ИИ\",\"status\":\"active\"}"
+{"full_name":"Петров Пётр","specialty":"ИИ","id":2,"status":"enrolled"}
+
+$ curl -s http://localhost:30080/students
+[{"full_name":"Иванов Иван","specialty":"ПМ","id":1,"status":"enrolled"},{"full_name":"Петров Пётр","specialty":"ИИ","id":2,"status":"enrolled"}]
+
+$ curl -s http://localhost:30080/reports/summary
+{"active_students_by_specialty":{"ИИ":1,"ПМ":1},"total_active_students":2,"total_expelled_students":0}

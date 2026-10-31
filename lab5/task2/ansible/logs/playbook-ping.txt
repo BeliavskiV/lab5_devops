@@ -1,0 +1,38 @@
+$ ansible-playbook --syntax-check playbooks/ping.yml playbooks/system-info.yml playbooks/nginx.yml
+
+playbook: playbooks/ping.yml
+
+playbook: playbooks/system-info.yml
+
+playbook: playbooks/nginx.yml
+
+$ ansible-playbook playbooks/ping.yml
+
+PLAY [Ping all nodes of the Kubernetes cluster] ********************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [lab4-worker2]
+ok: [lab4-control-plane]
+ok: [lab4-worker]
+
+TASK [Ping host] ***************************************************************
+ok: [lab4-worker]
+ok: [lab4-control-plane]
+ok: [lab4-worker2]
+
+TASK [Show host information] ***************************************************
+ok: [lab4-control-plane] => {
+    "msg": "lab4-control-plane: Debian 13.6 (aarch64), CPU 10, RAM 7934 MB"
+}
+ok: [lab4-worker] => {
+    "msg": "lab4-worker: Debian 13.6 (aarch64), CPU 10, RAM 7934 MB"
+}
+ok: [lab4-worker2] => {
+    "msg": "lab4-worker2: Debian 13.6 (aarch64), CPU 10, RAM 7934 MB"
+}
+
+PLAY RECAP *********************************************************************
+lab4-control-plane         : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+lab4-worker                : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+lab4-worker2               : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

@@ -1,0 +1,82 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # local_file.kind_config will be created
+  + resource "local_file" "kind_config" {
+      + content              = <<-EOT
+            "apiVersion": "kind.x-k8s.io/v1alpha4"
+            "kind": "Cluster"
+            "nodes":
+            - "extraPortMappings":
+              - "containerPort": 30080
+                "hostPort": 30080
+                "protocol": "TCP"
+              "role": "control-plane"
+            - "role": "worker"
+            - "role": "worker"
+        EOT
+      + content_base64sha256 = (known after apply)
+      + content_base64sha512 = (known after apply)
+      + content_md5          = (known after apply)
+      + content_sha1         = (known after apply)
+      + content_sha256       = (known after apply)
+      + content_sha512       = (known after apply)
+      + directory_permission = "0777"
+      + file_permission      = "0777"
+      + filename             = "./kind-config.yaml"
+      + id                   = (known after apply)
+    }
+
+  # terraform_data.cluster will be created
+  + resource "terraform_data" "cluster" {
+      + id               = (known after apply)
+      + triggers_replace = "lab5"
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + cluster_name     = "lab5"
+  + kind_config_path = "./kind-config.yaml"
+  + kubeconfig_path  = "./kubeconfig"
+local_file.kind_config: Creating...
+local_file.kind_config: Creation complete after 0s [id=fd2b07836453d16066c0b37c9408a1a0bef04187]
+terraform_data.cluster: Creating...
+terraform_data.cluster: Provisioning with 'local-exec'...
+terraform_data.cluster (local-exec): Executing: ["/bin/sh" "-c" "kind create cluster \\\n  --name \"lab5\" \\\n  --config \"./kind-config.yaml\"\nkind export kubeconfig \\\n  --name \"lab5\" \\\n  --kubeconfig \"./kubeconfig\"\n"]
+terraform_data.cluster (local-exec): Creating cluster "lab5" ...
+terraform_data.cluster (local-exec):  • Ensuring node image (kindest/node:v1.37.0) 🖼️  ...
+terraform_data.cluster (local-exec):  ✓ Ensuring node image (kindest/node:v1.37.0) 🖼️
+terraform_data.cluster (local-exec):  • Preparing nodes 📦 📦 📦   ...
+terraform_data.cluster (local-exec):  ✓ Preparing nodes 📦 📦 📦
+terraform_data.cluster (local-exec):  • Writing configuration 📜  ...
+terraform_data.cluster (local-exec):  ✓ Writing configuration 📜
+terraform_data.cluster (local-exec):  • Starting control-plane 🕹️  ...
+terraform_data.cluster (local-exec):  ✓ Starting control-plane 🕹️
+terraform_data.cluster (local-exec):  • Installing CNI 🔌  ...
+terraform_data.cluster (local-exec):  ✓ Installing CNI 🔌
+terraform_data.cluster (local-exec):  • Installing StorageClass 💾  ...
+terraform_data.cluster (local-exec):  ✓ Installing StorageClass 💾
+terraform_data.cluster (local-exec):  • Joining worker nodes 🚜  ...
+terraform_data.cluster: Still creating... [00m10s elapsed]
+terraform_data.cluster (local-exec):  ✓ Joining worker nodes 🚜
+terraform_data.cluster (local-exec): Set kubectl context to "kind-lab5"
+terraform_data.cluster (local-exec): You can now use your cluster with:
+
+terraform_data.cluster (local-exec): kubectl cluster-info --context kind-lab5
+
+terraform_data.cluster (local-exec): Thanks for using kind! 😊
+terraform_data.cluster (local-exec): Set kubectl context to "kind-lab5"
+terraform_data.cluster: Creation complete after 16s [id=c566a6f7-6d08-5699-f607-8a6967bd2d55]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+cluster_name = "lab5"
+kind_config_path = "./kind-config.yaml"
+kubeconfig_path = "./kubeconfig"

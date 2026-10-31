@@ -1,0 +1,16 @@
+---
+- name: Ping all nodes of the Kubernetes cluster
+  hosts: k8s_cluster
+  gather_facts: true
+  tasks:
+    - name: Ping host
+      ansible.builtin.ping:
+
+    - name: Show host information
+      ansible.builtin.debug:
+        msg: >-
+          {{ inventory_hostname }}:
+          {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}
+          ({{ ansible_facts['architecture'] }}),
+          CPU {{ ansible_facts['processor_vcpus'] }},
+          RAM {{ ansible_facts['memtotal_mb'] }} MB

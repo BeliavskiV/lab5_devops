@@ -1,0 +1,25 @@
+---
+- name: Ensure nginx is installed
+  ansible.builtin.apt:
+    name: "{{ nginx_package }}"
+    state: present
+    update_cache: true
+
+- name: Ensure document root exists
+  ansible.builtin.file:
+    path: "{{ nginx_document_root }}"
+    state: directory
+    mode: "0755"
+
+- name: Deploy the index page from a template
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: "{{ nginx_document_root }}/index.html"
+    mode: "0644"
+  notify: Restart nginx
+
+- name: Ensure nginx is running and enabled
+  ansible.builtin.service:
+    name: "{{ nginx_package }}"
+    state: started
+    enabled: true

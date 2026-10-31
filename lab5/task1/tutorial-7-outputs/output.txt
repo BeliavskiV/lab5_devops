@@ -1,0 +1,16 @@
+### terraform apply
+Plan: 2 to add, 0 to change, 0 to destroy.
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+
+### terraform output
+container_id = "a830138849c5f88afd63f2ab02054836d8a19b848ca29aaef4a61b187916262b"
+container_name = "ExampleNginxContainer"
+
+### terraform output -raw container_name
+ExampleNginxContainer
+
+### terraform output -raw container_id
+a830138849c5...
+
+### terraform destroy
+Destroy complete! Resources: 2 destroyed.

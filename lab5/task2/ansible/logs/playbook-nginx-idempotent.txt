@@ -1,0 +1,38 @@
+$ ansible-playbook playbooks/nginx.yml   # повторный запуск (идемпотентность)
+
+PLAY [Configure nginx on the worker nodes] *************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [lab4-worker2]
+ok: [lab4-worker]
+
+TASK [nginx : Ensure nginx is installed] ***************************************
+ok: [lab4-worker]
+ok: [lab4-worker2]
+
+TASK [nginx : Ensure document root exists] *************************************
+ok: [lab4-worker]
+ok: [lab4-worker2]
+
+TASK [nginx : Deploy the index page from a template] ***************************
+ok: [lab4-worker2]
+ok: [lab4-worker]
+
+TASK [nginx : Ensure nginx is running and enabled] *****************************
+ok: [lab4-worker2]
+ok: [lab4-worker]
+
+PLAY RECAP *********************************************************************
+lab4-worker                : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+lab4-worker2               : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+$ ansible workers -m uri -a "url=http://localhost/ return_content=yes"
+lab4-worker2 | SUCCESS => {
+    "content": "<!DOCTYPE html>\n<html lang=\"ru\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Лабораторная работа №5 — Ansible</title>\n</head>\n<body>\n  <h1>Ansible + kind</h1>\n  <p>Хост: lab4-worker2</p>\n  <p>ОС: Debian 13.6</p>\n  <p>Архитектура: aarch64</p>\n  <p>Порт: 80</p>\n</body>\n</html>\n",
+    "content_length": "316",
+    "content_type": "text/html",
+lab4-worker | SUCCESS => {
+    "content": "<!DOCTYPE html>\n<html lang=\"ru\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Лабораторная работа №5 — Ansible</title>\n</head>\n<body>\n  <h1>Ansible + kind</h1>\n  <p>Хост: lab4-worker</p>\n  <p>ОС: Debian 13.6</p>\n  <p>Архитектура: aarch64</p>\n  <p>Порт: 80</p>\n</body>\n</html>\n",
+    "content_length": "315",
+    "content_type": "text/html",

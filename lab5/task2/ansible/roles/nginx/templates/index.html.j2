@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Лабораторная работа №5 — Ansible</title>
+</head>
+<body>
+  <h1>Ansible + kind</h1>
+  <p>Хост: {{ inventory_hostname }}</p>
+  <p>ОС: {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}</p>
+  <p>Архитектура: {{ ansible_facts['architecture'] }}</p>
+  <p>Порт: {{ nginx_port }}</p>
+</body>
+</html>

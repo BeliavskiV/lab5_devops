@@ -1,0 +1,6 @@
+---
+- name: Configure nginx on the worker nodes
+  hosts: workers
+  gather_facts: true
+  roles:
+    - nginx

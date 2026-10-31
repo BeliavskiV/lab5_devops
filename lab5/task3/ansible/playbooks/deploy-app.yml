@@ -1,0 +1,79 @@
+---
+- name: Deploy the lab1/task5 application to the kind cluster
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    kubeconfig: "{{ playbook_dir }}/../../terraform/kubeconfig"
+    manifests_dir: "{{ playbook_dir }}/../../k8s"
+    kubectl: "kubectl --kubeconfig {{ kubeconfig }}"
+
+  tasks:
+    - name: Label the worker node for the web server and application
+      ansible.builtin.command:
+        cmd: "{{ kubectl }} label node lab5-worker node-role=web --overwrite"
+
+    - name: Label the worker node for the database
+      ansible.builtin.command:
+        cmd: "{{ kubectl }} label node lab5-worker2 node-role=db --overwrite"
+
+    - name: Apply namespace, secret and Liquibase changelog
+      ansible.builtin.command:
+        cmd: "{{ kubectl }} apply -f {{ manifests_dir }}/{{ item }}"
+      loop:
+        - 00-namespace.yaml
+        - 01-secret.yaml
+        - 02-configmap-liquibase.yaml
+
+    - name: Deploy PostgreSQL
+      ansible.builtin.command:
+        cmd: "{{ kubectl }} apply -f {{ manifests_dir }}/03-postgres.yaml"
+
+    - name: Wait for PostgreSQL to become ready
+      ansible.builtin.command:
+        cmd: "{{ kubectl }} -n lab5 rollout status deployment/db --timeout=180s"
+
+    - name: Remove a previous migration job if it exists
+      ansible.builtin.command:
+        cmd: "{{ kubectl }} -n lab5 delete job liquibase --ignore-not-found"
+
+    - name: Deploy the Liquibase migration job
+      ansible.builtin.command:
+        cmd: "{{ kubectl }} apply -f {{ manifests_dir }}/04-liquibase-job.yaml"
+
+    - name: Wait for the migration job to complete
+      ansible.builtin.command:
+        cmd: "{{ kubectl }} -n lab5 wait --for=condition=complete job/liquibase --timeout=300s"
+
+    - name: Deploy the FastAPI application
+      ansible.builtin.command:
+        cmd: "{{ kubectl }} apply -f {{ manifests_dir }}/05-app.yaml"
+
+    - name: Restart the application to pick up configuration changes
+      ansible.builtin.command:
+        cmd: "{{ kubectl }} -n lab5 rollout restart deployment/app"
+
+    - name: Wait for the application to become ready
+      ansible.builtin.command:
+        cmd: "{{ kubectl }} -n lab5 rollout status deployment/app --timeout=180s"
+
+    - name: Deploy the nginx proxy
+      ansible.builtin.command:
+        cmd: "{{ kubectl }} apply -f {{ manifests_dir }}/{{ item }}"
+      loop:
+        - 06-nginx-configmap.yaml
+        - 07-nginx.yaml
+
+    - name: Wait for nginx to become ready
+      ansible.builtin.command:
+        cmd: "{{ kubectl }} -n lab5 rollout status deployment/nginx --timeout=180s"
+
+    - name: Show pod placement across nodes
+      ansible.builtin.command:
+        cmd: "{{ kubectl }} -n lab5 get pods -o wide"
+      register: pods
+      changed_when: false
+
+    - name: Pod placement
+      ansible.builtin.debug:
+        var: pods.stdout_lines

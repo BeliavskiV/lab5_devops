@@ -1,0 +1,47 @@
+$ ansible-playbook playbooks/system-info.yml
+
+PLAY [Show memory and CPU of every host] ***************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [lab4-worker]
+ok: [lab4-worker2]
+ok: [lab4-control-plane]
+
+TASK [Total memory (MB)] *******************************************************
+ok: [lab4-control-plane] => {
+    "ansible_facts['memtotal_mb']": 7934
+}
+ok: [lab4-worker] => {
+    "ansible_facts['memtotal_mb']": 7934
+}
+ok: [lab4-worker2] => {
+    "ansible_facts['memtotal_mb']": 7934
+}
+
+TASK [Number of virtual CPUs] **************************************************
+ok: [lab4-control-plane] => {
+    "ansible_facts['processor_vcpus']": 10
+}
+ok: [lab4-worker] => {
+    "ansible_facts['processor_vcpus']": 10
+}
+ok: [lab4-worker2] => {
+    "ansible_facts['processor_vcpus']": 10
+}
+
+TASK [First CPU model] *********************************************************
+ok: [lab4-control-plane] => {
+    "ansible_facts['processor'][2]": "2"
+}
+ok: [lab4-worker] => {
+    "ansible_facts['processor'][2]": "2"
+}
+ok: [lab4-worker2] => {
+    "ansible_facts['processor'][2]": "2"
+}
+
+PLAY RECAP *********************************************************************
+lab4-control-plane         : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+lab4-worker                : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+lab4-worker2               : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
