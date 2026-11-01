@@ -29,8 +29,8 @@ task3/                 # Задание 3. Создание кластера (Te
 
 # Additional Notes
 
-Репозиторий: https://github.com/fpmi-devops-2026/devops26-devops4gr11-lab5-belyavsky
+* Репозиторий: https://github.com/BeliavskiV/lab5\_devops
+* **Задание 1** — 7 официальных руководств Terraform Get Started — Docker.
+* **Задание 2** — Ansible: inventory, ad-hoc команды, playbook'и с ролями и шаблонами.
+* **Задание 3** — создание кластера Kubernetes (kind) через Terraform, деплой многоконтейнерного приложения из лабораторной работы №1 через Ansible с размещением сервисов на разных нодах.
 
-- **Задание 1** — 7 официальных руководств Terraform Get Started — Docker.
-- **Задание 2** — Ansible: inventory, ad-hoc команды, playbook'и с ролями и шаблонами.
-- **Задание 3** — создание кластера Kubernetes (kind) через Terraform, деплой многоконтейнерного приложения из лабораторной работы №1 через Ansible с размещением сервисов на разных нодах.
